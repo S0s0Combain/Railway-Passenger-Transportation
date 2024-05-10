@@ -1,0 +1,36 @@
+﻿@page
+@model Railway_Passenger_Transportation.Pages.RegistrationModel
+@{
+    ViewData["Title"] = "Registration";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">Регистрация</h1>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="firstName">Имя</label>
+                    <input type="text" id="firstName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Фамилия</label>
+                    <input type="text" id="lastName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Номер телефона</label>
+                    <input type="tel" id="phoneNumber" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+            </form>
+            <p class="text-center">Уже зарегистрированы? <a asp-page="/Authorization">Войти</a></p>
+        </div>
+    </div>
+</div>
