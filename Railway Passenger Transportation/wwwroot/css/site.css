@@ -8,6 +8,44 @@ html {
   }
 }
 
+.navbar{
+    background:#F97300;
+}
+
+.nav-link, .navbar-brand{
+    color: #f4f4f4;
+    cursor: pointer;
+}
+
+.nav-link{
+    margin-right: 1em !important;
+}
+
+.nav-link:hover{
+    background: #f4f4f4;
+    color: #f97300;
+}
+
+.navbar-collapse{
+    justify-content: flex-end;
+}
+
+.navbar-toggler{
+    background: #fff !important;
+}
+
+.navbar-collapse{
+    justify-content: flex-end;
+}
+
+.bg-dark{
+    background-color: #343a40!important;
+}
+
+.bg-primary{
+    background-color:#343a40!important;
+}
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -18,14 +56,23 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .background-image {
     background-image: url("../Images/train.jpg");
     background-size: cover;
-    height:100vh;
-    width: 100vw;
-    background-position: center;
-    background-repeat:repeat;
+    width: 100%;
+    height: 100vh;
+    position: relative;
 }
+
+header{
+    margin-bottom: 0!important;
+}
+
+main{
+    padding:0!important;
+    margin:0!important;
+}
+

@@ -1,0 +1,29 @@
+﻿@page
+@model Railway_Passenger_Transportation.Pages.FlightsModel
+@{
+}
+<div class="container">
+    <div class="row">
+        @foreach(Flight flight in Model.Flights)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@flight.TrainNumber</h5>
+                        <p class="card-text">
+                            <strong>Пункт отправления:</strong> @flight.DeparturePoint<br />
+                            <strong>Пункт назначения:</strong> @flight.DestinationPoint<br />
+                            <strong>Дата:</strong> @flight.Date<br />
+                            <strong>Время отправления:</strong> @flight.DepartureTime<br />
+                            <strong>Время прибытия:</strong> @flight.ArrivalTime<br />
+                            <strong>Время в пути:</strong> @flight.TimeInTransit<br />
+                            <strong>Тип поезда:</strong> @flight.TrainType<br />
+                            <strong>Компания:</strong> @flight.Company<br />
+                        </p>
+                        <a asp-page="/Tickets" asp-route-flightId="@flight.Code" class="btn btn-primary">Купить билет</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

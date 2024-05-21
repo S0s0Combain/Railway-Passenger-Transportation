@@ -9,12 +9,8 @@
             <h1 class="text-center">Регистрация</h1>
             <form id="registrationForm">
                 <div class="form-group">
-                    <label for="firstName">Имя</label>
-                    <input type="text" id="firstName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Фамилия</label>
-                    <input type="text" id="lastName" class="form-control" required>
+                    <label for="login">Логин</label>
+                    <input type="text" id="login" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Электронная почта</label>
@@ -22,11 +18,11 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Пароль</label>
-                    <input type="password" id="password" class="form-control" required>
+                    <input type="password" id="password" class="form-control" required data-parsley-minlength="6" data-parsley-maxlength="16">
                 </div>
                 <div class="form-group">
-                    <label for="phoneNumber">Номер телефона</label>
-                    <input type="tel" id="phoneNumber" class="form-control" required>
+                    <label for="confirmPassword">Подтвердите пароль</label>
+                    <input type="password" id="confirmPassword" class="form-control" required data-parsley-equalto="#password">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
             </form>

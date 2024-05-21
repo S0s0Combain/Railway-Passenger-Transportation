@@ -3,3 +3,19 @@
 @{
     ViewData["Title"] = "Authorization";
 }
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Авторизация</h1>
+        <form id="authorizationForm">
+            <div class="form-group">
+                <label for="login">Логин</label>
+                <input type="text" id="login" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="text" id="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Войти</button>
+        </form>
+    </div>
+</div>

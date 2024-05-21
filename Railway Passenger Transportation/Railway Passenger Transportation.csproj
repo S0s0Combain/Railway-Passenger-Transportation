@@ -8,11 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\Images\train.jpg" />
+    <Content Include="Pages\index_page_train.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\Images\train.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
   </ItemGroup>
 
 </Project>

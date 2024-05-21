@@ -4,8 +4,20 @@
     ViewData["Title"] = "Home page";
 }
 <div class="background-image">
-    <div>
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
+    <form asp-page="/Flights" method="get">
+        <div class="form-group">
+            <label for="departure">Пункт отправления</label>
+            <input type="text" id="departure" name="departure" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="destination">Пункт назначения</label>
+            <input type="text" id="destination" name="destination" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="date">Дата</label>
+            <input type="date" id="date" name="date" class="form-control" required />
+        </div>
+        <button type="button" id="swap-button" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
+        <button type="submit" class="btn btn-primary">Найти рейсы</button>
+    </form>
 </div>
