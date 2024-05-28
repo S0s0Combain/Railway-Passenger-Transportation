@@ -2,19 +2,23 @@
 @model Railway_Passenger_Transportation.Pages.TicketsModel
 @{
 }
-<div class="container">
-    @foreach(Ticket ticket in Model.Tickets)
-    {
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">@ticket.SeatType</h5>
-                <p class="card-text">
-                    <strong>Вагон:</strong> @ticket.WagonNumber<br />
-                    <strong>Номер места:</strong> @ticket.SeatNumber<br />
-                    <strong>Цена:</strong> @ticket.Price<br />
-                </p>
-                <a asp-page="/TicketBuying" asp-route-ticketId="@ticket.Id" class="btn btn-primary">Перейти к покупке</a>
-            </div>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="container w-100">
+            @foreach (Ticket ticket in Model.Tickets)
+            {
+                <div class="card mt-3 ticket-card">
+                    <div class="card-body">
+                        <h5 class="card-title">@ticket.SeatType</h5>
+                        <p class="card-text">
+                            <strong>Вагон:</strong> @ticket.WagonNumber<br />
+                            <strong>Номер места:</strong> @ticket.SeatNumber<br />
+                            <strong>Цена:</strong> @ticket.Price<br />
+                        </p>
+                        <a asp-page="/TicketBuying" asp-route-ticketId="@ticket.Id" asp-route-wagonNumber="@ticket.WagonNumber" asp-route-seatNumber="@ticket.SeatNumber" asp-route-seatType="@ticket.SeatType" asp-route-price="@ticket.Price.ToString()" class="btn btn-primary">Перейти к покупке</a>
+                    </div>
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>

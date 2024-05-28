@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 using Npgsql;
 
 namespace Railway_Passenger_Transportation.Pages
@@ -14,7 +15,7 @@ namespace Railway_Passenger_Transportation.Pages
             databaseConnection = new DatabaseConnection(connectionString);
             Tickets = new List<Ticket>();
         }
-        public void OnGet(int flightId)
+        public void OnGet(int flightId, string departurePoint, string destinationPoint, DateTime date, TimeSpan departureTime, TimeSpan arrivalTime, string timeInTransit, string trainType, string trainNumber, string company)
         {
             using (NpgsqlConnection connection = databaseConnection.GetConnection())
             {
@@ -38,6 +39,20 @@ namespace Railway_Passenger_Transportation.Pages
                 }
                 databaseConnection.CloseConnection();
             }
+            Flight selectedFlight = new Flight
+            {
+                Code = flightId,
+                DeparturePoint = departurePoint,
+                DestinationPoint = destinationPoint,
+                DepartureTime = departureTime,
+                ArrivalTime = arrivalTime,
+                TimeInTransit = timeInTransit,
+                TrainNumber = trainNumber,
+                Date = date,
+                TrainType = trainType,
+                Company = company
+            };
+            HttpContext.Session.SetString("SelectedFlight", JsonConvert.SerializeObject(selectedFlight));
         }
     }
 }

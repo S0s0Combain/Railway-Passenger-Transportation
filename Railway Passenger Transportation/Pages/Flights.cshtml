@@ -2,28 +2,61 @@
 @model Railway_Passenger_Transportation.Pages.FlightsModel
 @{
 }
-<div class="container">
+<div class="container" style="margin-bottom:30px;">
     <div class="row">
-        @foreach(Flight flight in Model.Flights)
+        @foreach (Flight flight in Model.Flights)
         {
-            <div class="col-md-4">
-                <div class="card">
+            <div class="col-md-8 offset-md-3">
+                <div class="card flight-card mt-3">
                     <div class="card-body">
-                        <h5 class="card-title">@flight.TrainNumber</h5>
-                        <p class="card-text">
-                            <strong>Пункт отправления:</strong> @flight.DeparturePoint<br />
-                            <strong>Пункт назначения:</strong> @flight.DestinationPoint<br />
-                            <strong>Дата:</strong> @flight.Date<br />
-                            <strong>Время отправления:</strong> @flight.DepartureTime<br />
-                            <strong>Время прибытия:</strong> @flight.ArrivalTime<br />
-                            <strong>Время в пути:</strong> @flight.TimeInTransit<br />
-                            <strong>Тип поезда:</strong> @flight.TrainType<br />
-                            <strong>Компания:</strong> @flight.Company<br />
-                        </p>
-                        <a asp-page="/Tickets" asp-route-flightId="@flight.Code" class="btn btn-primary">Купить билет</a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">@flight.TrainNumber</h5>
+                                <p class="card-text">
+                                    <strong>Пункт отправления:</strong> @flight.DeparturePoint<br />
+                                    <strong>Пункт назначения:</strong> @flight.DestinationPoint<br />
+                                    <strong>Дата:</strong> @flight.Date.ToShortDateString()<br />
+                                    <strong>Время отправления:</strong> @flight.DepartureTime.ToString(@"hh\:mm")<br />
+                                    <strong>Время прибытия:</strong> @flight.ArrivalTime.ToString(@"hh\:mm")<br />
+                                    <strong>Время в пути:</strong> @flight.TimeInTransit<br />
+                                    <strong>Тип поезда:</strong> @flight.TrainType<br />
+                                    <strong>Компания:</strong> @flight.Company<br />
+                                </p>
+                                <a asp-page="/Tickets" asp-route-flightId="@flight.Code" asp-route-departurePoint="@flight.DeparturePoint" asp-route-destinationPoint="@flight.DestinationPoint"
+                                   asp-route-date="@flight.Date" asp-route-departureTime="@flight.DepartureTime" asp-route-arrivalTime="@flight.ArrivalTime" asp-route-timeInTransit="@flight.TimeInTransit" asp-route-trainType="@flight.TrainType"
+                                   asp-route-trainNumber="@flight.TrainNumber" asp-route-company="@flight.Company"
+                                   class="btn btn-primary">Купить билет</a>
+                            </div>
+                            <div>
+                                <button class="btn btn-link btn-sm show-routes" >Показать маршрут</button>
+                                <ul class="routes-list" style="display: none;">
+                                    @foreach (string station in flight.Route)
+                                    {
+                                        <li>@station</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var showButtons = document.querySelectorAll('.show-routes');
+
+        showButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var routesList = this.nextElementSibling;
+                if (routesList.style.display === 'none') {
+                    routesList.style.display = 'block';
+                } else {
+                    routesList.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>

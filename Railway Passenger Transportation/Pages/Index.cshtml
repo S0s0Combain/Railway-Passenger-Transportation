@@ -4,20 +4,30 @@
     ViewData["Title"] = "Home page";
 }
 <div class="background-image">
-    <form asp-page="/Flights" method="get">
-        <div class="form-group">
-            <label for="departure">Пункт отправления</label>
-            <input type="text" id="departure" name="departure" class="form-control" required />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-4">
+                <div class="card" id="index-card">
+                    <img src="/Images/logotype.png" id="index-logo-img" />
+                    <form asp-page="/Flights" method="get">
+                        <div class="form-group">
+                            <label for="departure">Пункт отправления</label>
+                            <input type="text" id="departure" name="departure" class="form-control" required />
+                        </div>
+                        <button type="button" id="swap-button"> </button>
+                        <div class="form-group">
+                            <label for="destination">Пункт назначения</label>
+                            <input type="text" id="destination" name="destination" class="form-control" required />
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="date">Дата</label>
+                            <input type="date" id="date" name="date" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Найти рейсы</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="destination">Пункт назначения</label>
-            <input type="text" id="destination" name="destination" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <label for="date">Дата</label>
-            <input type="date" id="date" name="date" class="form-control" required />
-        </div>
-        <button type="button" id="swap-button" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
-        <button type="submit" class="btn btn-primary">Найти рейсы</button>
-    </form>
+    </div>
 </div>
+<script src="~/js/index.js" asp-append-version="true"></script>

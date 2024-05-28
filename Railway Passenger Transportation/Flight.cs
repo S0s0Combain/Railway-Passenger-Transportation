@@ -12,5 +12,6 @@
         public DateTime Date {  get; set; }
         public string TrainType { get; set; }
         public string Company { get; set; }
+        public List<string> Route {  get; set; }
     }
 }

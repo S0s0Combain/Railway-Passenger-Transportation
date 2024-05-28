@@ -22,12 +22,12 @@ namespace Railway_Passenger_Transportation.Pages
         {
             using (NpgsqlConnection connection = databaseConnection.GetConnection())
             {
-                using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.select_flights(@departure, @destination, @date);", connection))
+                using (NpgsqlCommand commandGetFlights = new NpgsqlCommand("SELECT * FROM public.select_flights(@departure, @destination, @date);", connection))
                 {
-                    command.Parameters.AddWithValue("@departure", departure);
-                    command.Parameters.AddWithValue("@destination", destination);
-                    command.Parameters.Add("@date", NpgsqlDbType.Date).Value = date.Date;
-                    using (NpgsqlDataReader reader = command.ExecuteReader())
+                    commandGetFlights.Parameters.AddWithValue("@departure", departure);
+                    commandGetFlights.Parameters.AddWithValue("@destination", destination);
+                    commandGetFlights.Parameters.Add("@date", NpgsqlDbType.Date).Value = date.Date;
+                    using (NpgsqlDataReader reader = commandGetFlights.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -47,8 +47,25 @@ namespace Railway_Passenger_Transportation.Pages
                         }
                     }
                 }
-                databaseConnection.CloseConnection();
+                foreach (Flight flight in Flights)
+                {
+                    using (NpgsqlCommand commandGetRoute = new NpgsqlCommand("SELECT * FROM public.get_routes(@flightId);", connection))
+                    {
+                        commandGetRoute.Parameters.AddWithValue("@flightId", flight.Code);
+                        using (NpgsqlDataReader reader = commandGetRoute.ExecuteReader())
+                        {
+                            List<string> route = new List<string>();
+                            while (reader.Read())
+                            {
+                                route.Add(reader.GetString(0));
+                            }
+                            flight.Route = route;
+                        }
+                    }
+                }
             }
+            databaseConnection.CloseConnection();
         }
     }
 }
+

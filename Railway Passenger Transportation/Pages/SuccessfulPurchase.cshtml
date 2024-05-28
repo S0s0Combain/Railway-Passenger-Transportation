@@ -1,0 +1,25 @@
+﻿@page
+@model Railway_Passenger_Transportation.Pages.SuccessfulPurchaseModel
+@{
+    ViewData["Title"] = "Билет куплен";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Билет куплен</h1>
+            <hr>
+            <div class="alert alert-success text-center" role="alert">
+                <p>
+                    Ваш билет на поезд успешно куплен. <br>
+                    Билет отправлен на вашу электронную почту. <br>
+                    Пожалуйста, проверьте свою почту и распечатайте билет перед посадкой в поезд.
+                </p>
+            </div>
+            <div class="text-center">
+                <a asp-page="/Index" class="btn btn-primary">На главную</a>
+            </div>
+        </div>
+    </div>
+</div>
+
