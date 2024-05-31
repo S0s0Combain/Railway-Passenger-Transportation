@@ -18,10 +18,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">TrainTrek</a>
+                            <a class="nav-link navbar-brand" asp-area="" asp-page="/Index">TrainTrek</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Privacy">Политика конфиденциальности</a>
+                            <a class="nav-link navbar-brand" asp-area="" asp-page="/Privacy">Политика конфиденциальности</a>
                         </li>
                     </ul>
                 </div>
@@ -29,14 +29,29 @@
         </nav>
     </header>
 
-    <main role="main" >
-            @RenderBody()
+    <main role="main">
+        @RenderBody()
     </main>
 
 
     <footer class="mt-auto">
         <div class="container footer-container">
-            &copy; 2024 - TrainTrek - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; 2024 - TrainTrek - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center social-links">
+                <a href="https://github.com/S0s0Combain/Railway-Passenger-Transportation.git" class="text-decoration-none">
+                    <img src="/Images/github.png" class="mx-1 mb-3" style="width: 30px; height: 30px;">
+                </a>
+                <a href="https://vk.com/id341462204" class="text-decoration-none">
+                    <img src="/Images/VK.png" class="mx-1 mb-3" style="width: 30px; height: 30px;">
+                </a>
+            </div>
+        </div>
         </div>
     </footer>
 

@@ -21,6 +21,7 @@ namespace Railway_Passenger_Transportation.Pages
     {
         private readonly DatabaseConnection databaseConnection;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        public Ticket ticket;
         public PaymentModel(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
@@ -40,14 +41,16 @@ namespace Railway_Passenger_Transportation.Pages
                 Email = email
             };
             HttpContext.Session.SetString("Passenger", JsonConvert.SerializeObject(passenger));
-            Ticket ticket = JsonConvert.DeserializeObject<Ticket>(HttpContext.Session.GetString("SelectedTicket"));
+            ticket = JsonConvert.DeserializeObject<Ticket>(HttpContext.Session.GetString("SelectedTicket"));
             if (passenger.CategoryCode == 2)
             {
-                ticket.Price = ticket.Price - (30 / 100 * ticket.Price);
+                decimal discount = ticket.Price * 0.3m;
+                ticket.Price = ticket.Price - discount;
             }
             else if (passenger.CategoryCode == 3)
             {
-                ticket.Price = ticket.Price - (100 / 100 * ticket.Price);
+                decimal discount = ticket.Price * 1m;
+                ticket.Price = ticket.Price - discount;
             }
             HttpContext.Session.SetString("SelectedTicket", JsonConvert.SerializeObject(ticket));
         }
@@ -161,7 +164,6 @@ namespace Railway_Passenger_Transportation.Pages
                 document.Open();
 
                 iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imageStream.ToArray());
-                //image.ScaleToFit(document.PageSize.Width, document.PageSize.Height);
                 image.RotationDegrees = 90;
                 document.Add(image);
                 document.Close();
@@ -171,21 +173,21 @@ namespace Railway_Passenger_Transportation.Pages
 
         public void SendTicketEmail(Passenger passenger, byte[] pdfBytes, string pdfName)
         {
-            string smtpServer = "smtp.mail.ru"; //smpt сервер(зависит от почты отправителя)
-            int smtpPort = 587; // Обычно используется порт 587 для TLS
-            string smtpUsername = "traintrekercomp@mail.ru"; //твоя почта, с которой отправляется сообщение
+            string smtpServer = "smtp.mail.ru";
+            int smtpPort = 587; 
+            string smtpUsername = "traintrekercomp@mail.ru"; 
             string smtpPassword = "aarFJ3qaXUmTwwawcUzH";
-            // Создаем объект клиента SMTP
+            
             using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
             {
-                // Настройки аутентификации
+                
                 smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
                 smtpClient.EnableSsl = true;
 
                 using (MailMessage mailMessage = new MailMessage())
                 {
                     mailMessage.From = new MailAddress(smtpUsername);
-                    mailMessage.To.Add(passenger.Email); // Укажите адрес получателя
+                    mailMessage.To.Add(passenger.Email); 
                     mailMessage.Subject = "Билет на рейс";
                     mailMessage.Body = $"Добрый день, {passenger.Surname} {passenger.Name} {passenger.Patronymic}! <br/><br/>Прикреплен билет на рейс.";
                     mailMessage.IsBodyHtml = true;
@@ -193,7 +195,7 @@ namespace Railway_Passenger_Transportation.Pages
 
                     try
                     {
-                        // Отправляем сообщение
+                       
                         smtpClient.Send(mailMessage);
                         Console.WriteLine("Сообщение успешно отправлено.");
                     }

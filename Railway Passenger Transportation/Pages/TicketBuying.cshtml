@@ -2,27 +2,30 @@
 @model Railway_Passenger_Transportation.Pages.TicketBuyingModel
 @{
 }
+
 <h1 class="text-center">Покупка билета</h1>
+
 <div class="d-flex justify-content-between align-items-center mt-4">
     <div class="container d-flex">
-        <div class="col-md-12 offset-md-3 flex-grow-1">
+        <div class="col-md-8 offset-md-2 flex-grow-1">
+            <!-- Измените размеры колонок внутри формы -->
             <form id="ticketBuyingForm" asp-page="/Payment" method="get">
                 <div class="form-group row">
-                    <div class="col-md-2 col-sm-4">
+                    <div class="col-md-3 col-sm-6">
                         <label for="surname">Фамилия</label>
                         <input type="text"
                                class="form-control"
                                id="surname"
                                name="surname" required />
                     </div>
-                    <div class="col-md-2 col-sm-4">
+                    <div class="col-md-3 col-sm-6">
                         <label for="name">Имя</label>
                         <input type="text"
                                class="form-control"
                                id="name"
                                name="name" required />
                     </div>
-                    <div class="col-md-2 col-sm-4">
+                    <div class="col-md-3 col-sm-6">
                         <label for="patronymic">Отчество</label>
                         <input type="text"
                                class="form-control"
@@ -32,7 +35,7 @@
                 </div>
                 <div class="form-group row mt-3">
 
-                    <div class="col-md-3 col-sm-6 pl-3 pl-sm-0">
+                    <div class="col-md-4 col-sm-6 pl-3 pl-sm-0">
                         <label for="documentNumber">Номер документа</label>
                         <input type="text"
                                class="form-control"
@@ -40,7 +43,7 @@
                                name="documentNumber" required />
                     </div>
                 </div>
-                <div class="form-group mt-3 col-md-3 col-sm-4">
+                <div class="form-group mt-3 col-md-4 col-sm-6">
                     <label for="category">Категория пассажира</label>
                     <select class="form-control" id="category" name="category" required>
                         <option value="1">Взрослые</option>
@@ -49,11 +52,11 @@
                     </select>
                 </div>
                 <div class="form-group row mt-3">
-                    <div class="col-md-3 col-sm-4">
+                    <div class="col-md-4 col-sm-6">
                         <label for="phoneNumber">Телефон</label>
                         <input type="tel" id="phoneNumber" class="form-control" name="phoneNumber" required />
                     </div>
-                    <div class="col-md-3 col-sm-4">
+                    <div class="col-md-4 col-sm-6">
                         <label for="email">Эл. почта</label>
                         <input type="email" id="email" name="email" class="form-control" required />
                     </div>

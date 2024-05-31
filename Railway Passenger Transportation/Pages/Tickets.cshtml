@@ -2,22 +2,51 @@
 @model Railway_Passenger_Transportation.Pages.TicketsModel
 @{
 }
+
 <div class="row">
     <div class="col-md-6 offset-md-3">
-        <div class="container w-100">
-            @foreach (Ticket ticket in Model.Tickets)
+        <div class="container">
+            <h1 class="text-center mb-2">Выбор билета</h1>
+
+            @if (Model.Tickets.Count() == 0)
             {
-                <div class="card mt-3 ticket-card">
-                    <div class="card-body">
-                        <h5 class="card-title">@ticket.SeatType</h5>
-                        <p class="card-text">
-                            <strong>Вагон:</strong> @ticket.WagonNumber<br />
-                            <strong>Номер места:</strong> @ticket.SeatNumber<br />
-                            <strong>Цена:</strong> @ticket.Price<br />
-                        </p>
-                        <a asp-page="/TicketBuying" asp-route-ticketId="@ticket.Id" asp-route-wagonNumber="@ticket.WagonNumber" asp-route-seatNumber="@ticket.SeatNumber" asp-route-seatType="@ticket.SeatType" asp-route-price="@ticket.Price.ToString()" class="btn btn-primary">Перейти к покупке</a>
-                    </div>
+                <div class="text-center">
+                    <p>К сожалению, билетов на данный рейс нет.</p>
+                    <a asp-page="/Index" class="btn btn-primary">Перейти на главную</a>
                 </div>
+            }
+            else
+            {
+                @foreach (Ticket ticket in Model.Tickets)
+                {
+                    <div class="card mt-3 ticket-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">@ticket.SeatType</h5>
+                                    <p class="card-text">
+                                        <strong>Вагон:</strong> @ticket.WagonNumber<br />
+                                        <strong>Номер места:</strong> @ticket.SeatNumber<br />
+                                        <strong>Цена:</strong> @ticket.Price<br />
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">Удобства</h6>
+                                    <p class="card-text">
+                                        <strong>Включено питание:</strong> Да<br />
+                                        <strong>Вид из окна:</strong> Да<br />
+                                        <strong>Розетка:</strong> Да<br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a asp-page="/TicketBuying" asp-route-ticketId="@ticket.Id" asp-route-wagonNumber="@ticket.WagonNumber" asp-route-seatNumber="@ticket.SeatNumber" asp-route-seatType="@ticket.SeatType" asp-route-price="@ticket.Price.ToString()" class="btn btn-primary">Перейти к покупке</a>
+                        </div>
+                    </div>
+                }
             }
         </div>
     </div>

@@ -2,44 +2,55 @@
 @model Railway_Passenger_Transportation.Pages.PaymentModel
 @{
 }
+
 <div class="container">
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-6 offset-md-4">
             <h1 class="text-center">Оплата билета</h1>
-            <form id="paymentForm" asp-page-handler="Pay" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group row">
-                    <label class="col-md-3 col-form-label"></label>
-                    <div class="col-md-6">
-                        <input type="tel" class="form-control" placeholder="Номер карты" autocomplete="off" required/>
-                        <span class="text-danger"></span>
+            <div class="payment-form">
+                <form id="paymentForm" asp-page-handler="Pay" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Номер карты</label>
+                        <div class="col-md-6">
+                            <input type="tel" class="form-control" placeholder="Введите номер карты" autocomplete="off" required />
+                            <span class="text-danger"></span>
+                        </div>
                     </div>
+                    <div class="form-group row mt-2">
+                        <label class="col-md-3 col-form-label">Имя владельца карты</label>
+                        <div class="col-md-6">
+                            <input class="form-control" placeholder="Введите имя владельца карты" autocomplete="off" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Срок действия</label>
+                        <div class="col-md-3">
+                            <input class="form-control" placeholder="MM/YY" autocomplete="off" required />
+                            <span class="text-danger"></span>
+                        </div>
+                        <label class="col-md-2 col-form-label">CVV</label>
+                        <div class="col-md-2">
+                            <input class="form-control" placeholder="CVV" autocomplete="off" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-3">
+                        <div class="col-md-9 offset-md-3">
+                            <button type="submit" class="btn btn-primary">Оплатить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="payment-summary mt-4">
+                <h3 class="text-center">Итоговая цена</h3>
+                <div class="text-center">
+                    <strong>Итоговая цена с учетом скидки: @Model.ticket.Price р.</strong> 
                 </div>
-                <div class="form-group row">
-                    <label class="col-md-3 col-form-label"></label>
-                    <div class="col-md-6">
-                        <input class="form-control" placeholder="Имя владельца карты" autocomplete="off" required/>
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-3 col-form-label"></label>
-                    <div class="col-md-3">
-                        <input class="form-control" placeholder="MM/YY" autocomplete="off" required/>
-                        <span class="text-danger"></span>
-                    </div>
-                    <label class="col-md-2 col-form-label"></label>
-                    <div class="col-md-2">
-                        <input class="form-control" placeholder="CVV" autocomplete="off" required/>
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-9 offset-md-3">
-                        <button type="submit" class="btn btn-primary">Оплатить</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+

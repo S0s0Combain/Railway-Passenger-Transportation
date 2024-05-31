@@ -157,7 +157,6 @@ main {
     background: #FFF7ED;
     border: 1px solid #000000;
     margin-right: 10%;
-    margin-top:15px;
 }
 
 main{
@@ -166,4 +165,23 @@ main{
 
 footer {
     background: #F97300 !important;
+}
+
+#ticketBuyingForm {
+    padding:20px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    margin-right:20px;
+}
+
+.payment-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.payment-summary {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
 }
